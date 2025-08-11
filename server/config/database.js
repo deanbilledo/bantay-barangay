@@ -3,7 +3,7 @@ import logger from '../utils/logger.js'
 
 const connectDB = async () => {
   try {
-    const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/bantay_barangay_malagutay'
+    const mongoURI = process.env.MONGODB_URI || ''
     
     const conn = await mongoose.connect(mongoURI, {
       maxPoolSize: 10,
