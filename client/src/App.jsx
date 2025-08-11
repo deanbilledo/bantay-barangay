@@ -26,16 +26,20 @@ const Dashboard = React.lazy(() => import('./pages/Dashboard'))
 const Login = React.lazy(() => import('./pages/auth/Login'))
 const Register = React.lazy(() => import('./pages/auth/Register'))
 const RescueRequests = React.lazy(() => import('./pages/rescue/RescueRequests'))
-const CreateRescueRequest = React.lazy(() => import('./pages/rescue/CreateRescueRequest'))
-const RescueRequestDetail = React.lazy(() => import('./pages/rescue/RescueRequestDetail'))
-const Alerts = React.lazy(() => import('./pages/alerts/Alerts'))
-const CreateAlert = React.lazy(() => import('./pages/alerts/CreateAlert'))
-const AidDistribution = React.lazy(() => import('./pages/aid/AidDistribution'))
-const IncidentMap = React.lazy(() => import('./pages/map/IncidentMap'))
-const Profile = React.lazy(() => import('./pages/profile/Profile'))
-const Settings = React.lazy(() => import('./pages/settings/Settings'))
-const About = React.lazy(() => import('./pages/About'))
 const NotFound = React.lazy(() => import('./pages/NotFound'))
+
+// Import placeholder components
+import { 
+  CreateRescueRequest,
+  RescueRequestDetail,
+  Alerts,
+  CreateAlert,
+  AidDistribution,
+  IncidentMap,
+  Profile,
+  Settings,
+  About
+} from './pages/PlaceholderPages'
 
 // Create React Query client
 const queryClient = new QueryClient({
