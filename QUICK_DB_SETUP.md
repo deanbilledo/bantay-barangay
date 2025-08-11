@@ -53,7 +53,7 @@ If you want to skip the setup, you can temporarily use this test connection:
 
 ```bash
 # Add this to your server/.env file temporarily
-MONGODB_URI=
+MONGODB_URI=mongodb+srv://testuser:testpass123@cluster0.wduaz91.mongodb.net/bantay_barangay_test?retryWrites=true&w=majority
 ```
 
 **⚠️ Warning: This is for testing only! Set up your own database for production.**
