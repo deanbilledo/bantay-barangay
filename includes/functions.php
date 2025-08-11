@@ -1,7 +1,8 @@
 <?php
-require_once 'config/config.php';
-require_once 'config/database.php';
-
+// Get the absolute path to the project root
+$projectRoot = dirname(__DIR__);
+require_once $projectRoot . '/config/config.php';
+require_once $projectRoot . '/config/database.php';
 // Authentication functions
 function isLoggedIn() {
     return isset($_SESSION['user_id']) && !empty($_SESSION['user_id']);
