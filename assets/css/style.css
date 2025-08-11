@@ -1,0 +1,180 @@
+/* Custom CSS for BantayBarangay Malagutay */
+
+:root {
+    --primary-red: #dc3545;
+    --warning-yellow: #ffc107;
+    --success-green: #198754;
+    --dark-blue: #212529;
+}
+
+/* Mobile-first responsive design */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+
+/* Touch-friendly buttons */
+.btn {
+    min-height: 44px;
+    min-width: 44px;
+    font-weight: 500;
+}
+
+.btn-lg {
+    min-height: 56px;
+    font-size: 1.1rem;
+}
+
+/* Emergency color coding */
+.severity-watch { border-left: 4px solid var(--warning-yellow); }
+.severity-warning { border-left: 4px solid var(--primary-red); }
+.severity-critical { border-left: 4px solid var(--dark-blue); }
+
+.alert-watch { background-color: #fff3cd; border-color: var(--warning-yellow); }
+.alert-warning { background-color: #f8d7da; border-color: var(--primary-red); }
+.alert-critical { background-color: #d1ecf1; border-color: var(--dark-blue); }
+
+/* Status indicators */
+.status-pending { color: var(--warning-yellow); }
+.status-acknowledged { color: #0dcaf0; }
+.status-in_progress { color: #fd7e14; }
+.status-completed { color: var(--success-green); }
+
+/* Map container */
+#map {
+    height: 400px;
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* Form improvements */
+.form-control, .form-select {
+    min-height: 44px;
+    font-size: 1rem;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-red);
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+/* Card enhancements */
+.card {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    font-weight: 600;
+}
+
+/* Emergency request cards */
+.emergency-card {
+    border-left: 4px solid var(--primary-red);
+    transition: transform 0.2s;
+}
+
+.emergency-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Stats cards */
+.stat-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.stat-card.danger {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.stat-card.warning {
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    color: #333;
+}
+
+.stat-card.success {
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    color: #333;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    .btn-group-vertical > .btn {
+        margin-bottom: 0.5rem;
+    }
+    
+    .table-responsive {
+        font-size: 0.9rem;
+    }
+    
+    .navbar-brand {
+        font-size: 1rem;
+    }
+    
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.3rem; }
+    h3 { font-size: 1.1rem; }
+}
+
+/* Loading spinner */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Offline indicator */
+.offline-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #f8d7da;
+    color: #721c24;
+    text-align: center;
+    padding: 0.5rem;
+    z-index: 9999;
+    display: none;
+}
+
+.offline-indicator.show {
+    display: block;
+}
+
+/* Print styles */
+@media print {
+    .navbar, .btn, .no-print {
+        display: none !important;
+    }
+    
+    .container {
+        max-width: none;
+        padding: 0;
+    }
+    
+    .card {
+        border: 1px solid #ccc;
+        box-shadow: none;
+        page-break-inside: avoid;
+    }
+}
