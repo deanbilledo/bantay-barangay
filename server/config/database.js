@@ -6,13 +6,9 @@ const connectDB = async () => {
     const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/bantay_barangay_malagutay'
     
     const conn = await mongoose.connect(mongoURI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      maxPoolSize: 10, // Maintain up to 10 socket connections
-      serverSelectionTimeoutMS: 5000, // Keep trying to send operations for 5 seconds
-      socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
-      bufferMaxEntries: 0, // Disable mongoose buffering
-      bufferCommands: false, // Disable mongoose buffering
+      maxPoolSize: 10,
+      serverSelectionTimeoutMS: 5000,
+      socketTimeoutMS: 45000,
     })
 
     // Connection event listeners
@@ -43,7 +39,15 @@ const connectDB = async () => {
   } catch (error) {
     logger.error(`Database connection error: ${error.message}`)
     console.error(`❌ Database connection error: ${error.message}`)
-    process.exit(1)
+    console.log('\n💡 Database Setup Required:')
+    console.log('1. Install MongoDB locally, or')
+    console.log('2. Set up MongoDB Atlas (free cloud database)')
+    console.log('3. See QUICK_DB_SETUP.md for instructions')
+    console.log('4. Update MONGODB_URI in server/.env\n')
+    
+    // Don't exit the process, let the server run without database
+    // This allows the frontend to load even without database connection
+    return null
   }
 }
 

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "client": "cd client && npm start",
+    "client": "cd client && npm run dev",
     "server": "cd server && npm run dev",
     "build": "cd client && npm run build",
     "test": "concurrently \"cd server && npm test\" \"cd client && npm test\"",
@@ -15,7 +15,9 @@
     "install:all": "npm install && cd client && npm install && cd ../server && npm install",
     "clean": "rm -rf node_modules client/node_modules server/node_modules",
     "lint": "concurrently \"cd server && npm run lint\" \"cd client && npm run lint\"",
-    "lint:fix": "concurrently \"cd server && npm run lint:fix\" \"cd client && npm run lint:fix\""
+    "lint:fix": "concurrently \"cd server && npm run lint:fix\" \"cd client && npm run lint:fix\"",
+    "db:setup": "node scripts/db-setup.js",
+    "db:check": "node scripts/db-setup.js --check"
   },
   "keywords": [
     "disaster-response",

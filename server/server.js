@@ -31,10 +31,7 @@ import notificationRoutes from './routes/notificationRoutes.js'
 // Load environment variables
 dotenv.config()
 
-// Connect to MongoDB
-connectDB()
-
-// Create Express app
+// Create Express app first
 const app = express()
 const server = createServer(app)
 
@@ -52,6 +49,20 @@ configureSocket(io)
 
 // Make io accessible to routes
 app.set('io', io)
+
+// Connect to MongoDB (non-blocking)
+connectDB().then(connection => {
+  if (connection) {
+    app.set('dbConnected', true)
+    logger.info('Database connection established')
+  } else {
+    app.set('dbConnected', false)
+    logger.warn('Server starting without database connection')
+  }
+}).catch(err => {
+  app.set('dbConnected', false)
+  logger.error('Database connection failed:', err.message)
+})
 
 // Security middlewares
 app.use(helmet({
@@ -120,12 +131,23 @@ app.use('/api/notifications', notificationRoutes)
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
+  const dbConnected = req.app.get('dbConnected') || false
+  
   res.status(200).json({
     success: true,
     message: 'BantayBarangay API is running',
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV,
-    version: process.env.npm_package_version || '1.0.0'
+    version: process.env.npm_package_version || '1.0.0',
+    services: {
+      api: 'healthy',
+      database: dbConnected ? 'connected' : 'disconnected',
+      websocket: 'active'
+    },
+    setup: !dbConnected ? {
+      required: 'Database connection needed',
+      instructions: 'See QUICK_DB_SETUP.md for setup instructions'
+    } : undefined
   })
 })
 

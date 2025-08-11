@@ -51,24 +51,10 @@ const userSchema = new mongoose.Schema({
     default: 'resident'
   },
   address: {
-    street: String,
-    sitio: String,
-    barangay: {
-      type: String,
-      default: 'Malagutay'
-    },
-    municipality: {
-      type: String,
-      default: 'Loon'
-    },
-    province: {
-      type: String,
-      default: 'Bohol'
-    },
-    zipCode: {
-      type: String,
-      default: '6316'
-    }
+    type: String,
+    required: [true, 'Address is required'],
+    trim: true,
+    maxlength: [200, 'Address cannot exceed 200 characters']
   },
   location: {
     type: {
